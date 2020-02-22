@@ -14,7 +14,7 @@ services:
       - "ME_CONFIG_MONGODB_ADMINUSERNAME:root"
       - "ME_CONFIG_MONGODB_ADMINPASSWORD:root"
   iotapp:
-    image: ragulmathawa/iotapp-master:1.0
+    image: ragulmathawa/iotapp-master:1.0-1-gd5bf10a
     ports:
       - "3000:3000"
     environment:

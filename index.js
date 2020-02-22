@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
-const path = require("path")
-const port = process.env.PORT || 4200
+const serveStatic = require('express-static-gzip');
+const history = require('connect-history-api-fallback');
+const port = process.env.PORT || 8080
 
-app.use(express.static('public'))
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
-app.use("/public",express.static(__dirname + '/public'));
+app.use(history());
+app.use(
+  serveStatic(__dirname + '/dist/', {
+    enableBrotli: true,
+    orderPreference: ['br', 'gz']
+  })
+);
+
 
 app.listen(port, () => console.log(`IOT app listening on port ${port}!`))
